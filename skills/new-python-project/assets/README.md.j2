@@ -1,0 +1,64 @@
+# {{ project_name }}
+
+{{ project_description }}
+
+## 功能特性
+
+- 使用 [uv](https://docs.astral.sh/uv/) 进行依赖管理
+- 使用 [pre-commit](https://pre-commit.com/) 进行代码规范检查
+- 使用 [pytest](https://docs.pytest.org/) 进行测试
+- 使用 [bumpversion](https://github.com/peritus/bumpversion) 进行版本管理
+
+## 安装
+
+```bash
+# 克隆仓库
+git clone https://github.com/YOUR_USERNAME/{{ project_name }}.git
+cd {{ project_name }}
+
+# 安装依赖
+uv sync
+
+# 安装 pre-commit hooks
+uv run pre-commit install
+```
+
+## 使用
+
+```bash
+# 运行应用
+uv run python -m {{ project_name }}
+```
+
+## 开发
+
+```bash
+# 运行测试并生成覆盖率报告
+uv run pytest
+
+# 格式化代码
+uv run pre-commit run --all-files
+
+# 版本升级
+uv run bumpversion patch  # 或 minor, major
+```
+
+## 项目结构
+
+```
+{{ project_name }}/
+├── src/
+│   └── {{ project_name }}/
+│       ├── __init__.py
+│       ├── _version.py
+│       └── ...
+├── tests/
+│   └── __init__.py
+├── .bumpversion.cfg
+├── .flake8
+├── .gitignore
+├── .pre-commit-config.yaml
+├── pyproject.toml
+├── README.md
+└── uv.lock
+```
