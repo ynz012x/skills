@@ -26,3 +26,12 @@ repos:
           - --no-sort-keys
       - id: requirements-txt-fixer
       - id: trailing-whitespace
+  # https://github.com/snyk/agent-scan
+  - repo: local
+    hooks:
+      - id: mcp-scan
+        name: skills security scan
+        entry: uvx mcp-scan@latest --skills skills/
+        language: system
+        pass_filenames: false
+        files: ^skills/.*$
