@@ -5,13 +5,13 @@ python_classes = ["Test*", "*Test"]
 python_functions = ["test_*"]
 addopts = [
     "-v",
-    "--cov=src/{{ project_name }}",
+    "--cov=src/{{project_name}}",
     "--cov-report=term-missing",
     "--tb=short",
 ]
 
 [tool.coverage.run]
-source = ["src/{{ project_name }}"]
+source = ["src/{{project_name}}"]
 branch = true
 omit = ["tests/*"]
 

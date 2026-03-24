@@ -1,6 +1,6 @@
-# {{ project_name }}
+# {{project_name}}
 
-{{ project_description }}
+{{project_description}}
 
 ## 功能特性
 
@@ -14,8 +14,8 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/YOUR_USERNAME/{{ project_name }}.git
-cd {{ project_name }}
+git clone https://github.com/YOUR_USERNAME/{{project_name}}.git
+cd {{project_name}}
 
 # 安装依赖
 uv sync
@@ -28,7 +28,7 @@ uv run pre-commit install
 
 ```bash
 # 运行应用
-uv run python -m {{ project_name }}
+uv run python -m {{project_name}}
 ```
 
 ## 开发
@@ -41,7 +41,7 @@ uv run pytest
 uv run pre-commit run --all-files
 
 # 类型检查
-uv run mypy src/{{ project_name }}/
+uv run mypy src/{{project_name}}/
 
 # 版本升级
 uv run bumpversion patch  # 或 minor, major
@@ -50,9 +50,9 @@ uv run bumpversion patch  # 或 minor, major
 ## 项目结构
 
 ```
-{{ project_name }}/
+{{project_name}}/
 ├── src/
-│   └── {{ project_name }}/
+│   └── {{project_name}}/
 │       ├── __init__.py
 │       ├── _version.py
 │       ├── py.typed

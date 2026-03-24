@@ -35,15 +35,15 @@ disable-model-invocation: true
 ```bash
 uv init \
     # 项目名称
-    --name=<project_name> \
+    --name={{project_name}} \
     # 项目描述
-    --description="<project_description>" \
-    # 初始化 src/<project_name> 包目录
+    --description="{{project_description}}" \
+    # 初始化 src/{{project_name}} 包目录
     --package \
     # 初始化 git
     --vcs=git \
     # Python 最低支持版本
-    --python=<python_version>
+    --python={{python_version}}
 ```
 
 ## Step 3: 配置代码规范和类型检查
@@ -56,7 +56,7 @@ uv add --dev pre-commit black flake8 flake8-import-order ruff mypy
 
 将 [assets/templates/pre-commit-config.yaml](assets/templates/pre-commit-config.yaml) 内容写入项目根目录的 `.pre-commit-config.yaml` 文件
 
-将 [assets/templates/flake8](assets/templates/flake8) 模板应用到项目根目录的 `.flake8` 文件，替换变量 `{{ project_name }}` 为项目名称
+使用模板 [assets/templates/flake8](assets/templates/flake8) 生成 `.flake8` 文件
 
 安装 pre-commit hooks：
 
@@ -67,10 +67,10 @@ uv run pre-commit install
 创建 PEP-561 类型标记文件（标识该包支持类型检查）：
 
 ```bash
-touch src/<project_name>/py.typed
+touch src/{{project_name}}/py.typed
 ```
 
-在 `pyproject.toml` 中添加 mypy 配置，将 [assets/templates/pyproject-mypy.toml](assets/templates/pyproject-mypy.toml) 模板内容追加到 `pyproject.toml`，替换变量 `{{ python_version }}` 为 Python 版本
+使用模板 [assets/templates/pyproject-mypy.toml](assets/templates/pyproject-mypy.toml) 生成 mypy 配置，追加到 `pyproject.toml`
 
 ## Step 4: 配置测试框架
 
@@ -87,7 +87,7 @@ mkdir -p tests
 touch tests/__init__.py
 ```
 
-在 `pyproject.toml` 中添加 pytest 和 coverage 配置，将 [assets/templates/pyproject-test.toml](assets/templates/pyproject-test.toml) 模板内容追加到 `pyproject.toml`，替换变量 `{{ project_name }}` 为项目名称
+使用模板 [assets/templates/pyproject-test.toml](assets/templates/pyproject-test.toml) 生成 pytest 配置，追加到 `pyproject.toml`
 
 
 ## Step 5: 配置版本管理工具
@@ -106,13 +106,13 @@ uv add --dev bumpversion
 
 配置版本元信息
 
-1) 将 [assets/templates/_version.py](assets/templates/_version.py) 写入 `src/<project_name>/_version.py`
+1) 使用模板 [assets/templates/_version.py](assets/templates/_version.py) 生成 `src/{{project_name}}/_version.py`
 
-2) 将 [assets/templates/__init__.py](assets/templates/__init__.py) 写入 `src/<project_name>/__init__.py`，替换变量 `{{ project_name }}` 为项目名称
+2) 使用模板 [assets/templates/__init__.py](assets/templates/__init__.py) 生成 `src/{{project_name}}/__init__.py`
 
-3) 将 [assets/templates/test_version.py](assets/templates/test_version.py) 写入 `tests/test_version.py`，替换变量 `{{ project_name }}` 为项目名称
+3) 使用模板 [assets/templates/test_version.py](assets/templates/test_version.py) 生成 `tests/test_version.py`
 
-将 [assets/templates/bumpversion.cfg](assets/templates/bumpversion.cfg) 模板应用到项目根目录的 `.bumpversion.cfg` 文件，替换变量 `{{ project_name }}` 为项目名称
+使用模板 [assets/templates/bumpversion.cfg](assets/templates/bumpversion.cfg) 生成 `.bumpversion.cfg` 文件
 
 ## Step 6: 添加常用开发工具
 
@@ -141,19 +141,15 @@ uv run pre-commit run --all-files
 uv run bumpversion --help
 
 # 验证版本元信息
-uv run python -c 'from <project_name> import __version__; print(__version__)'
+uv run python -c 'from {{project_name}} import __version__; print(__version__)'
 
 # 验证 mypy
-uv run mypy src/<project_name>/
+uv run mypy src/{{project_name}}/
 ```
 
 ## Step 8: 更新README
 
-使用模板 [assets/templates/README.md](assets/templates/README.md) 生成项目 README 文件，替换以下变量：
-- `{{ project_name }}` - 项目名称
-- `{{ project_description }}` - 项目描述
-
-将生成的内容写入项目根目录的 `README.md` 文件。
+使用模板 [assets/templates/README.md](assets/templates/README.md) 生成 `README.md` 文件
 
 ## Step 9: 完成初始提交
 
