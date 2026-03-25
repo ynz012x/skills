@@ -29,6 +29,7 @@ claude --plugin-dir .
 | `ccpy:requirement-analysis` | 基于徐峰《有效需求分析》方法论，采用 SERU 方法和三阶段分析流程 |
 | `ccpy:system-design` | 基于系统设计 7 步法融合 SERU 方法论，支持增量设计和接口签名输出 |
 | `ccpy:skill-design-advisor` | 基于 Google 5大设计模式，分析 Skill 需求并推荐最佳结构。建议在 skill-creator 之前运行 |
+| `ccpy:skill-creator` | 创建新 skill、修改和优化现有 skill，支持性能测试和描述优化 |
 
 ## 目录结构
 
@@ -42,7 +43,8 @@ cckit-python/
 │   ├── git-commit-generator/
 │   ├── requirement-analysis/
 │   ├── system-design/
-│   └── skill-design-advisor/
+│   ├── skill-design-advisor/
+│   └── skill-creator/
 ├── LICENSE
 └── README.md
 ```
@@ -54,6 +56,14 @@ cckit-python/
 ```bash
 pre-commit install
 pre-commit run --all-files
+```
+
+### Makefile 命令
+
+```bash
+make help          # 显示所有可用命令
+make check-deps    # 检查依赖工具是否已安装
+make sync-skills   # 同步外部 skills（覆盖更新 + validate）
 ```
 
 ## License
