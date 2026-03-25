@@ -24,5 +24,6 @@ repos:
           - --autofix
           - --no-ensure-ascii
           - --no-sort-keys
+          - --indent=2
       - id: requirements-txt-fixer
       - id: trailing-whitespace
