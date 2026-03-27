@@ -3,6 +3,8 @@
 
 # Skill files
 *.skill
+# https://github.com/anthropics/skills/issues/490
+skills/*-workspace/
 
 # Claude
 .claude/settings.local.json

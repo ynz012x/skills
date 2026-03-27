@@ -1,0 +1,120 @@
+{
+  "skill_name": "git-commit-generator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "先运行 setup 脚本 `bash evals/files/setup_feat_new_module.sh` 准备测试环境，然后切换到 /tmp/test-repo-feat 目录，帮我把暂存区的代码提交了。我在这个 Python 项目里新写了一个认证模块，文件已经 add 到暂存区了。",
+      "expected_output": "生成类似 feat(auth): 添加认证模块 的提交消息并成功执行 git commit",
+      "files": [
+        "evals/files/setup_feat_new_module.sh"
+      ],
+      "expectations": [
+        "Commit message 的 type 是 feat",
+        "Commit message 包含 scope，值为 auth 或与认证模块目录相关",
+        "Commit message 的 description 部分使用中文",
+        "git commit 执行成功，git log 可以看到新的提交",
+        "消息格式符合 Conventional Commits 规范：type(scope): description"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "先运行 setup 脚本 `bash evals/files/setup_fix_null_check.sh` 准备测试环境，然后切换到 /tmp/test-repo-fix 目录。我在这个仓库里修了一个空指针的 bug，改动已经 staged 了，请帮我提交。",
+      "expected_output": "生成类似 fix(services): 修复空指针异常 的提交消息并成功执行 git commit",
+      "files": [
+        "evals/files/setup_fix_null_check.sh"
+      ],
+      "expectations": [
+        "Commit message 的 type 是 fix",
+        "Commit message 的 description 部分使用中文",
+        "Description 语义上与修复 bug/异常相关",
+        "git commit 执行成功，git log 可以看到新的提交"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "先运行 setup 脚本 `bash evals/files/setup_docs_update.sh` 准备测试环境，然后切换到 /tmp/test-repo-docs 目录，帮我把更新的文档提交了。",
+      "expected_output": "生成类似 docs: 更新项目文档 的提交消息并成功执行 git commit",
+      "files": [
+        "evals/files/setup_docs_update.sh"
+      ],
+      "expectations": [
+        "Commit message 的 type 是 docs",
+        "Commit message 的 description 部分使用中文",
+        "git commit 执行成功",
+        "Type 不是 feat、fix 等与代码功能相关的类型"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "先运行 setup 脚本 `bash evals/files/setup_refactor_cross_module.sh` 准备测试环境，然后切换到 /tmp/test-repo-refactor 目录。我把好几个模块的重复验证代码重构了一下，提取到了统一的 validators 模块，都 add 好了，帮我 commit。",
+      "expected_output": "生成类似 refactor: 重构数据验证逻辑 的提交消息，可能包含 body 列表描述具体变更",
+      "files": [
+        "evals/files/setup_refactor_cross_module.sh"
+      ],
+      "expectations": [
+        "Commit message 的 type 是 refactor",
+        "由于变更跨 models、services、api、utils 四个模块，scope 被省略或使用合理的聚合表示",
+        "Commit message 的 description 部分使用中文",
+        "git commit 执行成功",
+        "变更涉及 5 个文件，commit message 可能包含 body 列表说明关键变更"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "先运行 setup 脚本 `bash evals/files/setup_empty_staging.sh` 准备测试环境，然后切换到 /tmp/test-repo-empty 目录，帮我提交一下代码。",
+      "expected_output": "检测到暂存区为空，提示用户先 git add，不执行 commit",
+      "files": [
+        "evals/files/setup_empty_staging.sh"
+      ],
+      "expectations": [
+        "没有执行 git commit（git log 仍只有初始提交）",
+        "输出中提示用户需要先 git add",
+        "流程正确终止，没有生成 commit message"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "先运行 setup 脚本 `bash evals/files/setup_breaking_change_api.sh` 准备测试环境，然后切换到 /tmp/test-repo-breaking 目录。我重新设计了用户 API 接口，删掉了 delete_user 函数并修改了 get_user 的签名（参数类型从 int 改为 str，新增了 include_profile 参数），改动已 staged，帮我提交。",
+      "expected_output": "生成包含 ! 后缀和 BREAKING CHANGE footer 的提交消息",
+      "files": [
+        "evals/files/setup_breaking_change_api.sh"
+      ],
+      "expectations": [
+        "Commit message 的 type 后有 ! 标记表示破坏性变更",
+        "消息包含 BREAKING CHANGE: footer",
+        "Footer 说明了具体的破坏性变更内容（如删除函数、修改签名）",
+        "Commit message 的 description 部分使用中文",
+        "git commit 执行成功"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "先运行 setup 脚本 `bash evals/files/setup_large_change_batch.sh` 准备测试环境，然后切换到 /tmp/test-repo-large 目录。我批量添加了 25 个组件文件，都 add 了，帮我提交一下。",
+      "expected_output": "基于 name-status 和 stat 推断（大型变更策略），生成合理的 feat 类型 commit message",
+      "files": [
+        "evals/files/setup_large_change_batch.sh"
+      ],
+      "expectations": [
+        "Commit message 的 type 是 feat（新增文件占比 > 80%）",
+        "Scope 合理（应为 components 或相关）",
+        "Commit message 的 description 部分使用中文",
+        "git commit 执行成功",
+        "文件数 > 20，skill 应采用大型变更策略（不逐文件读取详细 diff）"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "先运行 setup 脚本 `bash evals/files/setup_merge_state.sh` 准备测试环境，然后切换到 /tmp/test-repo-merge 目录，帮我提交一下代码。",
+      "expected_output": "检测到 .git/MERGE_HEAD 存在，提示这是 merge commit，建议使用 git 默认消息，终止流程",
+      "files": [
+        "evals/files/setup_merge_state.sh"
+      ],
+      "expectations": [
+        "Skill 没有生成自定义 commit message 并执行提交",
+        "输出中提到当前处于 merge 状态",
+        "建议用户使用 git 默认的 merge commit 消息",
+        "流程正确终止"
+      ]
+    }
+  ]
+}
