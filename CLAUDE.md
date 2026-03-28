@@ -2,10 +2,6 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## 语言偏好
-
-**请始终使用中文与用户交流**，包括所有回复、解释、代码注释建议和文档说明。
-
 ## 项目概览
 
 **cckit-python** 是一个 Claude Code 插件，为 Python 开发者提供 AI 驱动的 Skills。插件以 `ccpy` 命名安装到 Claude Code，所有 skill 使用 `ccpy:` 命名空间前缀。这不是一个 Python 包——没有 `pyproject.toml` 或 `setup.py`，核心内容是基于 Markdown 的 Skill 定义。
