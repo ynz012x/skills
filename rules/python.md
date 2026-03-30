@@ -55,3 +55,25 @@ if status == OrderStatus.PENDING:
 ```
 
 固定选项集合（状态、类型、模式）必须定义为 Enum，成员使用 `UPPER_CASE` 命名。
+
+## 函数与文件长度限制
+
+- 单一函数不超过 50 行（不含空行和注释）
+- 单一文件不超过 500 行
+
+超出限制时，将逻辑拆分为多个函数或模块：
+
+错误：
+```python
+def process_order(order):
+    # 100 行的业务逻辑...
+```
+
+正确：
+```python
+def validate_order(order): ...      # 职责单一，行数可控
+def calculate_total(order): ...
+def process_order(order):           # 只做编排，调用子函数
+    validate_order(order)
+    return calculate_total(order)
+```
