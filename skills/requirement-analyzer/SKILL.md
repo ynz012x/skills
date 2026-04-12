@@ -1,5 +1,5 @@
 ---
-name: requirement-analysis
+name: requirement-analyzer
 description: 基于徐峰《有效需求分析》方法论的系统化需求分析skill。采用SERU方法和三阶段分析流程，覆盖价值需求、功能需求、数据需求、质量需求四条主线。当你需要做需求分析、梳理系统需求、编写需求规格说明书、挖掘用户需求、启动新项目需求调研时，请使用此 skill。
 ---
 

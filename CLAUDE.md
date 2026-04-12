@@ -37,7 +37,7 @@ claude --plugin-dir .   # 以本地插件模式加载，用于测试
 |---|---|---|
 | `python-initializr` | Pipeline | 初始化规范的 Python 项目（uv、pre-commit、mypy、pytest、bumpversion） |
 | `git-commit-generator` | Generator | 自动生成符合 Conventional Commits v1.0.0 的中文提交信息 |
-| `requirement-analysis` | Pipeline | 基于徐峰 SERU 方法论的系统化需求分析 |
+| `requirement-analyzer` | Pipeline | 基于徐峰 SERU 方法论的系统化需求分析 |
 | `system-design` | Pipeline | 融合 SERU 的 7 步系统架构设计 |
 | `skill-design-advisor` | Reviewer+Generator | 为新建或现有 skill 推荐设计模式 |
 | `skill-creator` | Pipeline | 创建、评测和优化 skill（从 Anthropic 同步） |
