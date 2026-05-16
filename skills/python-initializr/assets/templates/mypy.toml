@@ -1,4 +1,4 @@
-[tool.mypy]
+[mypy]
 python_version = "{{python_version}}"
 warn_return_any = true
 warn_unused_configs = true

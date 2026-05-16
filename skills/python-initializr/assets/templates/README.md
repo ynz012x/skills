@@ -60,10 +60,13 @@ uv run bumpversion patch  # 或 minor, major
 ├── tests/
 │   └── __init__.py
 ├── .bumpversion.cfg
+├── .coveragerc
 ├── .flake8
 ├── .gitignore
 ├── .pre-commit-config.yaml
+├── mypy.toml
 ├── pyproject.toml
+├── pytest.ini
 ├── README.md
 └── uv.lock
 ```

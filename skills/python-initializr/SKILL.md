@@ -70,7 +70,7 @@ uv run pre-commit install
 touch src/{{project_name}}/py.typed
 ```
 
-使用模板 [assets/templates/pyproject-mypy.toml](assets/templates/pyproject-mypy.toml) 生成 mypy 配置，追加到 `pyproject.toml`
+使用模板 [assets/templates/mypy.toml](assets/templates/mypy.toml) 生成项目根目录的 `mypy.toml` 文件
 
 ## Step 4: 配置测试框架
 
@@ -87,7 +87,9 @@ mkdir -p tests
 touch tests/__init__.py
 ```
 
-使用模板 [assets/templates/pyproject-test.toml](assets/templates/pyproject-test.toml) 生成 pytest 配置，追加到 `pyproject.toml`
+使用模板 [assets/templates/pytest.ini](assets/templates/pytest.ini) 生成项目根目录的 `pytest.ini` 文件
+
+使用模板 [assets/templates/coveragerc](assets/templates/coveragerc) 生成项目根目录的 `.coveragerc` 文件
 
 
 ## Step 5: 配置版本管理工具
